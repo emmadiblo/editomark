@@ -12,6 +12,7 @@ const copyButton = document.getElementById('copy');
 const themeSelect = document.getElementById('theme-select');
 const wordCountElement = document.getElementById('wordCount');
 const charCountElement = document.getElementById('charCount');
+const downloadHtml = document.getElementById('download-html');
 
 const editor = CodeMirror.fromTextArea(textarea, {
     mode: 'markdown',
@@ -66,10 +67,51 @@ function downloadMarkdown() {
 }
 
 downloadButton.addEventListener('click', downloadMarkdown);
-document.addEventListener('keydown', (e) => {
+
+//desactiver les id par defaut
+marked.setOptions({
+    headerIds: false
+});
+
+downloadHtml.addEventListener('click', () => {
+    const markdownText = editor.getValue();
+    let filename = document.getElementById('filename')?.value || 'document';
+    if (validateFilename(filename)) {
+        const htmlContent = marked(markdownText);
+        const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${filename}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+});
+
+document.addEventListener('keydown', async (e) => {
     if (e.ctrlKey && e.key === 's') {
         e.preventDefault();
-        downloadMarkdown();
+        const choice = confirm('Voulez-vous sauvegarder en HTML? (OK pour HTML, Annuler pour Markdown)');
+        if (choice) {
+            const markdownText = editor.getValue();
+            let filename = document.getElementById('filename')?.value || 'document';
+            if (validateFilename(filename)) {
+                const htmlContent = marked(markdownText);
+                const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${filename}.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        } else {
+            downloadMarkdown();
+        }
     }
 });
 
