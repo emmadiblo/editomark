@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditoMark</title>
+    <link rel="shortcut icon" href="assets/icon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="themes/ambiance.css">
+    <link rel="stylesheet" href="themes/abbott.css">
+    <link rel="stylesheet" href="themes/abcdef.css">
+    <link rel="stylesheet" href="themes/ayu-dark.css">
+    <link rel="stylesheet" href="themes/ayu-mirage.css">
+    <link rel="stylesheet" href="themes/blackboard.css">
+    <link rel="stylesheet" href="themes/monokai.css">
+
+ <link rel="stylesheet" href="styles/styles.css">
+ <link rel="stylesheet" href="styles/codemirror.css">
+</head>
+<body>
+    <div class="header">
+
+        <a href="./" style="display: flex; 
+        justify-content: center; 
+        align-items: center;">
+         <img src="assets/icon.svg" height="40px" width="auto" alt="">
+         <h3>EditoMark</h3>
+         </a>
+
+        <div class="controls">
+            <input type="text" id="filename" class="filename-input" placeholder="nom-du-fichier" required value="document">
+            <select id="theme-select" class="theme-switch">
+                <option value="default">default theme</option>
+                <option value="abbott">abbott</option>
+                <option value="abcdef">abcdef</option>
+                <option value="ambiance">Ambiance</option>
+                <option value="ayu-dark">ayu-dark</option>
+                <option value="ayu-mirage">ayu-mirage</option>
+                <option value="blackboard">blackboard</option>
+  
+
+                <option value="monokai">Monokai</option>
+     
+   
+            </select>
+            <button id="upload" class="button">📂 Ouvrir</button>
+            <button id="download" class="button">⬇️ Télécharger</button>
+            <button id="copy" class="button">📋 Copier</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="editor-container">
+            <div class="container-title">MARKDOWN</div>
+            <textarea id="markdown" placeholder="Écrivez votre Markdown ici..." autofocus></textarea>
+        </div>
+        <div class="preview-container">
+            <div class="container-title">APERÇU</div>
+            <div id="preview"></div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+
+
+    <div>
+        <div class="status-bar">
+            <span id="wordCount">0 mots</span> | 
+            <span id="charCount">0 caractères</span>
+        </div>
+        <div class="copy">&copy; 2024 EditoMark</div>
+        <div class="tools">Autres outils: <a href="https://emmadiblo.github.io/editovcard">Editeur des contacts facilement</a>, <a href="https://emmadiblo.github.io/marktohtml">Convertisseur Markdown vers HTML</a></div>
+    </div>
+    <div>
+        <ul class="socials">
+            <li><a href="https://linkedin.com/in/emmadiblouwizeyimana"><img src="assets/linkedin.svg" alt="LinkedIn"></a></li>
+            <li><a href="https://facebook.com/emmadiblouwizeyimana"><img src="assets/facebook.svg" alt="Facebook"></a></li>
+            <li><a href="https://github.com/emmadiblo"><img src="assets/github.svg" alt="GitHub"></a></li>
+            <li><a href="mailto:emmadiblouwizeyimana@gmail.com"><img src="assets/gmail.svg" alt="Gmail"></a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<script src="imports/codemirror.js"></script>
+  <script src="imports/markdown.js"></script>
+<script src="imports/marked.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
